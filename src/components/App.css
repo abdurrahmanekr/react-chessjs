@@ -1,0 +1,25 @@
+.line {
+    height: 40px;
+    width: 328px;
+    display: flex;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.line:first-child {
+    border-top: 1px solid #ccc;
+}
+
+.square {
+    width: 40px;
+    height: 40px;
+    border-left: 1px solid #ccc;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.piece {
+    width: 37px;
+}
