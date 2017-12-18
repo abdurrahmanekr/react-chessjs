@@ -22,6 +22,7 @@ export default class App extends Component {
         };
 
         this.onPieceClick = this.onPieceClick.bind(this);
+        this.isMovable = this.isMovable.bind(this);
     }
 
     componentWillMount() {
@@ -32,12 +33,11 @@ export default class App extends Component {
                 var move = moves[Math.floor(Math.random() * moves.length)];
                 chess.move(move);
 
-                // debugger;
                 self.setState({ test: 1 });
             } else {
                 clearInterval(interval);
             }
-        }, 3000)
+        }, 1000)
     }
 
     getStone(type, color) {
@@ -96,9 +96,27 @@ export default class App extends Component {
         }
     }
 
+    isMovable(x, y) {
+        const square = this.state.selectedPiece && chess.get(this.state.selectedPiece);
+        return chess.moves({square: this.state.selectedPiece}).indexOf(square && square.type !== chess.PAWN ? (square.type.toUpperCase() + join(y, x)) : join(y, x)) !== -1
+    }
+
+    isPlus(x, y) {
+        const square = this.state.selectedPiece && chess.get(this.state.selectedPiece);
+        var moves = chess.moves({square: this.state.selectedPiece});
+        if (moves.length === 0 || !square)
+            return false;
+        return moves.find(z => {
+            return  z.indexOf((square.type !== chess.PAWN ? square.type.toUpperCase() : '') + 'x' + join(y, x)) !== -1 ||
+                    z.indexOf((square.type !== chess.PAWN ? square.type.toUpperCase() : '') + 'x' + join(y, x) + '+') !== -1 ||
+                    z.indexOf((square.type !== chess.PAWN ? square.type.toUpperCase() : '') + join(y, x) + '+') !== -1
+        })
+    }
+
     render() {
         const img1 = 'https://randomuser.me/api/portraits/men/1.jpg'; 
-        const img2 = 'https://randomuser.me/api/portraits/women/10.jpg'; 
+        const img2 = 'https://randomuser.me/api/portraits/women/10.jpg';
+
         return (
             <div className='container'>
                 <div className="title">
@@ -117,10 +135,11 @@ export default class App extends Component {
                 </div>
                 <div className="board">
                 {
-                    [1, 2, 3, 4, 5, 6, 7, 8].map((x, i) => (
+                    [8, 7, 6, 5, 4, 3, 2, 1].map((x, i) => (
                         <div
                             className='line'
                             key={i}>
+                            <span className="number left">{x}</span>
                             {
                                 ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'].map((y, j) => (
                                     <span
@@ -129,9 +148,15 @@ export default class App extends Component {
                                             'square',
                                             { 'selected': this.state.selectedPiece === join(y, x)},
                                             { 'white': chess.square_color(join(y, x)) === 'light' },
+                                            { 'movable': this.isMovable(x, y)},
+                                            { 'movable-plus': this.isPlus(x, y)},
                                         )}
                                         onClick={e => this.onPieceClick(e, x, y)}>
                                         {this.calc(x, y).stone}
+                                        {
+                                            x === 8 &&
+                                            <span className="number bottom">{y}</span>
+                                        }
                                     </span>
                                 ))
                             }

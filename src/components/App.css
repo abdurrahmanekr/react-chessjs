@@ -82,6 +82,7 @@ body {
 
 .board {
     padding: 0 10px;
+    position: relative;
 }
 
 .line {
@@ -115,6 +116,26 @@ body {
     background-color: #8fecf6;
 }
 
+.square.movable {
+    background-color: red;
+}
+
+.square.movable-plus {
+    background-color: orange;
+}
+
 .piece {
     width: 37px;
+}
+
+.number {
+    position: absolute;
+}
+
+.number.left {
+    left: -5px;
+}
+
+.number.bottom {
+    bottom: -20px;
 }
