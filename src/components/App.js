@@ -11,6 +11,7 @@ import {
 } from '../utils';
 
 import Board from './Board/Board';
+import LeaderBoard from './LeaderBoard/LeaderBoard';
 
 const chess = new Chess();
 
@@ -51,20 +52,16 @@ export default class App extends Component {
 
         return (
             <div className='container'>
-                <div className="title">
-                    <div className={"player player1 " + (chess.turn() === 'w' ? 'your-turn' : '')}>
-                        <span className="player-img"><img src={img1}/></span>
-                        <div>Jhorge Cary</div>
-                    </div>
-                    <div className="chess-point">
-                        <div className="point-title">Point</div>
-                        <span className='point'>{1}</span>
-                    </div>
-                    <div className={"player player2 " + (chess.turn() === 'b' ? 'your-turn' : '')}>
-                        <span className="player-img"><img src={img2}/></span>
-                        <div>Izabella Girlsway</div>
-                    </div>
-                </div>
+                <LeaderBoard
+                    chess={chess}
+                    player1={{
+                        name: 'Jhorge Cary',
+                        img: img1,
+                    }}
+                    player2={{
+                        name: 'Izabella Girlsway',
+                        img: img2,
+                    }}/>
                 <Board
                     chess={chess}
                     selectedPiece={this.state.selectedPiece}
