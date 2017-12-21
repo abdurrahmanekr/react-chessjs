@@ -25,21 +25,6 @@ export default class App extends Component {
         this.isMovable = this.isMovable.bind(this);
     }
 
-    componentWillMount() {
-        var self = this;
-        var interval = setInterval(() => {
-            if (!chess.game_over()) {
-                var moves = chess.moves();
-                var move = moves[Math.floor(Math.random() * moves.length)];
-                chess.move(move);
-
-                self.setState({ test: 1 });
-            } else {
-                clearInterval(interval);
-            }
-        }, 1000)
-    }
-
     getStone(type, color) {
         switch(type) {
             case chess.PAWN:
@@ -89,7 +74,17 @@ export default class App extends Component {
 
     onPieceClick(e, x, y) {
         var piece = join(y, x);
+        var square = chess.get(piece);
+
+        var moves = chess.moves({square: piece});
+
         if (this.state.selectedPiece !== piece) {
+            var xNew = piece[1], yNew = piece[0];
+            var move = this.isMovable(xNew, yNew) || this.isPlus(xNew, yNew) || this.isPromotion(xNew, yNew);
+            if (move) {
+                chess.move(move);
+            }
+
             this.setState({
                 selectedPiece: piece,
             })
@@ -98,7 +93,11 @@ export default class App extends Component {
 
     isMovable(x, y) {
         const square = this.state.selectedPiece && chess.get(this.state.selectedPiece);
-        return chess.moves({square: this.state.selectedPiece}).indexOf(square && square.type !== chess.PAWN ? (square.type.toUpperCase() + join(y, x)) : join(y, x)) !== -1
+        var moves = chess.moves({ square: this.state.selectedPiece });
+        // var tmp;
+        return moves.find(z => {
+            return z.match(new RegExp(square && square.type !== chess.PAWN ? (square.type.toUpperCase() + '.?' + join(y, x)) : join(y, x), 'g')) !== null
+        });
     }
 
     isPlus(x, y) {
@@ -110,6 +109,16 @@ export default class App extends Component {
             return  z.indexOf((square.type !== chess.PAWN ? square.type.toUpperCase() : '') + 'x' + join(y, x)) !== -1 ||
                     z.indexOf((square.type !== chess.PAWN ? square.type.toUpperCase() : '') + 'x' + join(y, x) + '+') !== -1 ||
                     z.indexOf((square.type !== chess.PAWN ? square.type.toUpperCase() : '') + join(y, x) + '+') !== -1
+        })
+    }
+
+    isPromotion(x, y) {
+        const square = this.state.selectedPiece && chess.get(this.state.selectedPiece);
+        var moves = chess.moves({square: this.state.selectedPiece});
+        if (moves.length === 0 || !square)
+            return false;
+        return moves.find(z => {
+            return z.match(new RegExp(`.*x?(${join(y, x)})=.`)) !== null
         })
     }
 
@@ -150,6 +159,7 @@ export default class App extends Component {
                                             { 'white': chess.square_color(join(y, x)) === 'light' },
                                             { 'movable': this.isMovable(x, y)},
                                             { 'movable-plus': this.isPlus(x, y)},
+                                            { 'movable-promotion': this.isPromotion(x, y)},
                                         )}
                                         onClick={e => this.onPieceClick(e, x, y)}>
                                         {this.calc(x, y).stone}

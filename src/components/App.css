@@ -124,6 +124,10 @@ body {
     background-color: orange;
 }
 
+.square.movable-promotion {
+    background-color: pink;
+}
+
 .piece {
     width: 37px;
 }
