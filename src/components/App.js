@@ -106,9 +106,8 @@ export default class App extends Component {
         if (moves.length === 0 || !square)
             return false;
         return moves.find(z => {
-            return  z.indexOf((square.type !== chess.PAWN ? square.type.toUpperCase() : '') + 'x' + join(y, x)) !== -1 ||
-                    z.indexOf((square.type !== chess.PAWN ? square.type.toUpperCase() : '') + 'x' + join(y, x) + '+') !== -1 ||
-                    z.indexOf((square.type !== chess.PAWN ? square.type.toUpperCase() : '') + join(y, x) + '+') !== -1
+            return  z.match(new RegExp('.*x' + join(y, x) + '\\+?')) !== null ||
+                    z.match(new RegExp('.*x?' + join(y, x) + '\\+')) !== null
         })
     }
 
