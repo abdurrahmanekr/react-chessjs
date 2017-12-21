@@ -35,7 +35,7 @@ export default class Piece extends Component {
                 onClick={e => onPieceClick(e, x, y)}>
                 { piece }
                 {
-                    x === 8 &&
+                    x === 1 &&
                     <span className="number bottom">{y}</span>
                 }
             </span>

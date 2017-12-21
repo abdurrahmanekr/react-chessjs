@@ -91,6 +91,7 @@ body {
     display: flex;
     border-right: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
+    position: relative;
 }
 
 .line:first-child {
@@ -137,7 +138,8 @@ body {
 }
 
 .number.left {
-    left: -5px;
+    top: 10px;
+    left: -15px;
 }
 
 .number.bottom {
