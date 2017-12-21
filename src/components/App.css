@@ -83,11 +83,11 @@ body {
 .board {
     padding: 0 10px;
     position: relative;
+    user-select: none;
 }
 
 .line {
     height: 40px;
-    width: 328px;
     display: flex;
     border-right: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
@@ -117,15 +117,15 @@ body {
 }
 
 .square.movable {
-    background-color: red;
+    background-color: #888888;
 }
 
 .square.movable-plus {
-    background-color: orange;
+    background-color: #ff7171;
 }
 
 .square.movable-promotion {
-    background-color: pink;
+    background-color: #fdff97;
 }
 
 .piece {
