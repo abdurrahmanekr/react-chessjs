@@ -7,6 +7,20 @@ export function join() {
     return str;
 }
 
+export function getSide(side, chess) {
+    var arr = [];
+    if (side === chess.BLACK) {
+        for (var i = 1; i < 9; i++)
+            arr.push(String(i))
+    }
+    else {
+        for (var i = 8; i > 0; i--)
+            arr.push(String(i))
+    }
+
+    return arr;
+}
+
 export function isMovable(x, y, chess, piece) {
     const square = piece && chess.get(piece);
     const moves = chess.moves({ square: piece });

@@ -7,6 +7,7 @@ import {
     isPlus,
     isPromotion,
     isCastle,
+    getSide,
 } from '../../utils';
 
 import Piece from '../Piece/Piece';
@@ -29,6 +30,7 @@ export default class Board extends Component {
     render() {
         const {
             chess,
+            side,
             selectedPiece,
             onPieceClick,
         } = this.props;
@@ -37,7 +39,7 @@ export default class Board extends Component {
             <div
                 className="board">
                 {
-                    ['8', '7', '6', '5', '4', '3', '2', '1'].map((y, i) => (
+                    getSide(side, chess).map((y, i) => (
                         <div
                             className='line'
                             key={i}>
@@ -48,6 +50,7 @@ export default class Board extends Component {
                                         key={j}
                                         x={x}
                                         y={y}
+                                        numberShow={chess.BLACK === side ? y === '8' : y === '1'}
                                         selected={selectedPiece === join(x, y)}
                                         color={chess.square_color(join(x, y))}
                                         movable={isMovable(x, y, chess, selectedPiece)}

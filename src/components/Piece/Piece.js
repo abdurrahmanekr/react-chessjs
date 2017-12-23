@@ -14,6 +14,7 @@ export default class Piece extends Component {
             onPieceClick,
             piece,
             selected,
+            numberShow,
         } = this.props;
 
         return (
@@ -30,7 +31,7 @@ export default class Piece extends Component {
                 onClick={e => onPieceClick(e, x, y)}>
                 { piece }
                 {
-                    y === '1' &&
+                    numberShow &&
                     <span className="number bottom">{x}</span>
                 }
             </span>

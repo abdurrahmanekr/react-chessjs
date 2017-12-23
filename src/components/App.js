@@ -66,6 +66,7 @@ export default class App extends Component {
                     }}/>
                 <Board
                     chess={chess}
+                    side={chess.WHITE}
                     selectedPiece={this.state.selectedPiece}
                     onPieceClick={this.onPieceClick.bind(this)}/>
             </div>
