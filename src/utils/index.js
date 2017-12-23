@@ -13,7 +13,7 @@ export function isMovable(x, y, chess, piece) {
 
     return moves.find(z => {
         return z.match(
-            new RegExp(square && square.type !== chess.PAWN ? (square.type.toUpperCase() + '.?' + join(y, x)) : join(y, x), 'g')
+            new RegExp(square && square.type !== chess.PAWN ? (square.type.toUpperCase() + '.?' + join(x, y)) : join(x, y), 'g')
         ) !== null
     });
 }
@@ -26,8 +26,8 @@ export function isPlus(x, y, chess, piece) {
         return false;
 
     return moves.find(z => {
-        return  z.match(new RegExp('.*x' + join(y, x) + '\\+?')) !== null ||
-                z.match(new RegExp('.*x?' + join(y, x) + '\\+')) !== null
+        return  z.match(new RegExp('.*x' + join(x, y) + '\\+?')) !== null ||
+                z.match(new RegExp('.*x?' + join(x, y) + '\\+')) !== null
     })
 }
 
@@ -39,7 +39,7 @@ export function isPromotion(x, y, chess, piece) {
         return false;
 
     return moves.find(z => {
-        return z.match(new RegExp(`.*x?(${join(y, x)})=.`)) !== null
+        return z.match(new RegExp(`.*x?(${join(x, y)})=.`)) !== null
     })
 }
 
@@ -57,19 +57,19 @@ export function isWinner(player, chess) {
 
 export function isCastle(x, y, chess, piece) {
     const moves = chess.moves({ square: piece });
-    const square = chess.get(join(y, x));
+    const square = chess.get(join(x, y));
 
     if (moves.length === 0 ||
         square ||
-        chess.turn() === chess.WHITE && x !== '1' ||
-        chess.turn() === chess.BLACK && x !== '8'
+        chess.turn() === chess.WHITE && y !== '1' ||
+        chess.turn() === chess.BLACK && y !== '8'
     ) return false;
 
     return moves.find(z => {
         return  z.match('O-O-O') !== null && 
-                join(y, x).match(new RegExp('c1|c8')) ||
+                join(x, y).match(new RegExp('c1|c8')) ||
                 z.match('O-O') !== null &&
-                join(y, x).match(new RegExp('g1|g8'))
+                join(x, y).match(new RegExp('g1|g8'))
     })
 }
 

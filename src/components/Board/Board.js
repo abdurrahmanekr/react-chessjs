@@ -15,7 +15,7 @@ export default class Board extends Component {
 
     getPiece(x, y) {
         const chess = this.props.chess;
-        const square = chess.get(join(y, x));
+        const square = chess.get(join(x, y));
         if (!square)
             return {
                 piece: ' ',
@@ -37,19 +37,19 @@ export default class Board extends Component {
             <div
                 className="board">
                 {
-                    ['8', '7', '6', '5', '4', '3', '2', '1'].map((x, i) => (
+                    ['8', '7', '6', '5', '4', '3', '2', '1'].map((y, i) => (
                         <div
                             className='line'
                             key={i}>
-                            <span className="number left">{x}</span>
+                            <span className="number left">{y}</span>
                             {
-                                ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'].map((y, j) => (
+                                ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'].map((x, j) => (
                                     <Piece
                                         key={j}
                                         x={x}
                                         y={y}
-                                        selected={selectedPiece === join(y, x)}
-                                        color={chess.square_color(join(y, x))}
+                                        selected={selectedPiece === join(x, y)}
+                                        color={chess.square_color(join(x, y))}
                                         movable={isMovable(x, y, chess, selectedPiece)}
                                         plus={isPlus(x, y, chess, selectedPiece)}
                                         promotion={isPromotion(x, y, chess, selectedPiece)}

@@ -26,13 +26,13 @@ export default class App extends Component {
     }
 
     onPieceClick(e, x, y) {
-        var piece = join(y, x);
+        var piece = join(x, y);
         var square = chess.get(piece);
 
         var moves = chess.moves({ square: piece });
 
         if (this.state.selectedPiece !== piece) {
-            var xNew = piece[1], yNew = piece[0];
+            var xNew = piece[0], yNew = piece[1];
             var move =  isMovable(xNew, yNew, chess, this.state.selectedPiece) || 
                         isPlus(xNew, yNew, chess, this.state.selectedPiece) ||
                         isPromotion(xNew, yNew, chess, this.state.selectedPiece) ||
