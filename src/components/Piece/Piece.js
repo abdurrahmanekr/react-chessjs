@@ -1,13 +1,6 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 
-import {
-    join,
-    isMovable,
-    isPlus,
-    isPromotion,
-} from '../../utils';
-
 export default class Piece extends Component {
     render() {
         const {
@@ -17,6 +10,7 @@ export default class Piece extends Component {
             movable,
             plus,
             promotion,
+            castle,
             onPieceClick,
             piece,
             selected,
@@ -31,6 +25,7 @@ export default class Piece extends Component {
                     { 'movable': movable },
                     { 'movable-plus': plus },
                     { 'movable-promotion': promotion },
+                    { 'movable-castle': castle },
                 )}
                 onClick={e => onPieceClick(e, x, y)}>
                 { piece }

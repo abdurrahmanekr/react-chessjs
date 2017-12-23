@@ -6,6 +6,7 @@ import {
     isMovable,
     isPlus,
     isPromotion,
+    isCastle,
 } from '../../utils';
 
 import Piece from '../Piece/Piece';
@@ -36,7 +37,7 @@ export default class Board extends Component {
             <div
                 className="board">
                 {
-                    [8, 7, 6, 5, 4, 3, 2, 1].map((x, i) => (
+                    ['8', '7', '6', '5', '4', '3', '2', '1'].map((x, i) => (
                         <div
                             className='line'
                             key={i}>
@@ -52,6 +53,7 @@ export default class Board extends Component {
                                         movable={isMovable(x, y, chess, selectedPiece)}
                                         plus={isPlus(x, y, chess, selectedPiece)}
                                         promotion={isPromotion(x, y, chess, selectedPiece)}
+                                        castle={isCastle(x, y, chess, selectedPiece)}
                                         onPieceClick={onPieceClick}
                                         piece={this.getPiece(x, y).piece}/>
                                 ))

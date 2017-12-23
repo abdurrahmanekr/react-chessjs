@@ -55,6 +55,24 @@ export function isWinner(player, chess) {
     return null
 }
 
+export function isCastle(x, y, chess, piece) {
+    const moves = chess.moves({ square: piece });
+    const square = chess.get(join(y, x));
+
+    if (moves.length === 0 ||
+        square ||
+        chess.turn() === chess.WHITE && x !== '1' ||
+        chess.turn() === chess.BLACK && x !== '8'
+    ) return false;
+
+    return moves.find(z => {
+        return  z.match('O-O-O') !== null && 
+                join(y, x).match(new RegExp('c1|c8')) ||
+                z.match('O-O') !== null &&
+                join(y, x).match(new RegExp('g1|g8'))
+    })
+}
+
 export function getPiece(chess, type, color) {
     switch(type) {
         case chess.PAWN:

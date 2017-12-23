@@ -8,6 +8,7 @@ import {
     isMovable,
     isPlus,
     isPromotion,
+    isCastle,
 } from '../utils';
 
 import Board from './Board/Board';
@@ -34,7 +35,8 @@ export default class App extends Component {
             var xNew = piece[1], yNew = piece[0];
             var move =  isMovable(xNew, yNew, chess, this.state.selectedPiece) || 
                         isPlus(xNew, yNew, chess, this.state.selectedPiece) ||
-                        isPromotion(xNew, yNew, chess, this.state.selectedPiece);
+                        isPromotion(xNew, yNew, chess, this.state.selectedPiece) ||
+                        isCastle(xNew, yNew, chess, this.state.selectedPiece)
 
             if (move) {
                 chess.move(move);

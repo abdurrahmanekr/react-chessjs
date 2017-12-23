@@ -130,6 +130,10 @@ body {
     background-color: #fdff97;
 }
 
+.square.movable-castle {
+    background-color: #fdff97;
+}
+
 .piece {
     width: 37px;
 }
