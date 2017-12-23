@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
 
+import {
+    isWinner,
+} from '../../utils'
+
 export default class LeaderBoard extends Component {
     render() {
         const {
@@ -15,10 +19,14 @@ export default class LeaderBoard extends Component {
                     className={classNames(
                         'player',
                         'player1',
-                        { 'your-turn': chess.turn() === 'w' })
-                    }>
+                        { 'your-turn': chess.turn() === 'w' },
+                    )}>
                     <span className="player-img">
                         <img src={player1.img}/>
+                        {
+                            isWinner(chess.WHITE, chess) === true &&
+                            <img src={player1.img} className='winner-player'/>
+                        }
                     </span>
                     <div>{ player1.name }</div>
                 </div>
@@ -32,10 +40,14 @@ export default class LeaderBoard extends Component {
                     className={classNames(
                         'player',
                         'player2',
-                        { 'your-turn': chess.turn() !== 'w' })
-                    }>
+                        { 'your-turn': chess.turn() !== 'w' },
+                    )}>
                     <span className="player-img">
                         <img src={player2.img}/>
+                        {
+                            isWinner(chess.BLACK, chess) === true &&
+                            <img src={player2.img} className='winner-player'/>
+                        }
                     </span>
                     <div>{ player2.name }</div>
                 </div>

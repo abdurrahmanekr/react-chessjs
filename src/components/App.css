@@ -58,6 +58,7 @@ body {
     border-radius: 100%;
     padding: 5px;
     transition: 500ms;
+    position: relative;
 }
 
 .title > .player.your-turn .player-img {
@@ -73,7 +74,7 @@ body {
     margin-top: 5px;
 }
 
-.title > .player img {
+.title > .player img:first-child {
     display: block;
     width: 45px;
     height: 45px;
@@ -144,4 +145,14 @@ body {
 
 .number.bottom {
     bottom: -20px;
+}
+
+.winner-player {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    border: 1px solid #ff0;
+    box-sizing: border-box;
+    top: 0;
+    right: 0;
 }

@@ -43,6 +43,18 @@ export function isPromotion(x, y, chess, piece) {
     })
 }
 
+export function isWinner(player, chess) {
+    if (chess.in_checkmate()) {
+        if (chess.turn() === player)
+            return false
+        return true
+    }
+    else if (chess.game_over())
+        return '1/2';
+
+    return null
+}
+
 export function getPiece(chess, type, color) {
     switch(type) {
         case chess.PAWN:
