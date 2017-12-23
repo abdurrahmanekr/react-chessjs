@@ -19,7 +19,7 @@ const chess = new Chess();
 export default class App extends Component {
     constructor(props) {
         super(props);
-    
+
         this.state = {
             selectedPiece: null,
         };
@@ -49,7 +49,7 @@ export default class App extends Component {
     }
 
     render() {
-        const img1 = 'https://randomuser.me/api/portraits/men/1.jpg'; 
+        const img1 = 'https://randomuser.me/api/portraits/men/1.jpg';
         const img2 = 'https://randomuser.me/api/portraits/women/10.jpg';
 
         return (
