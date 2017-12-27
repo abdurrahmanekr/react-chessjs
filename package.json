@@ -26,6 +26,8 @@
     "react": "16.0.0",
     "react-dom": "^15.4.1",
     "react-native": "0.51.0",
+    "react-native-scrollable-tab-view": "git+https://github.com/abdurrahmanekr/react-native-scrollable-tab-view.git#3df42397b11fdcd0e3d4b3cdb96ed1f3b65ca3a1",
+    "react-native-vector-icons": "^4.4.3",
     "react-navigation": "^1.0.0-beta.22",
     "socket.io": "^1.7.4"
   }
