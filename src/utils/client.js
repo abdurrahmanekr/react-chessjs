@@ -1,13 +1,23 @@
 import io from "socket.io-client";
 
-export default class Client {
-    constructor() {
+class Client {
+
+    connected = false;
+
+    connect() {
         this.socket = io.connect('http://localhost:8082');
 
-        this.socket.on('connect', this.connect);
+        this.socket.on('connect', () => {
+            this.connected = true;
+        });
     }
 
-    connect(res) {
-        console.log('Bağlandı');
+    emit(...params) {
+        if (!this.connected)
+            return;
+
+        this.socket.emit(...params);
     }
 }
+
+export default new Client();

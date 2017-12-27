@@ -4,7 +4,7 @@
   "main": "index.js",
   "author": "Abdurrahman Eker <abdurrahmaneker58@gmail.com>",
   "scripts": {
-    "start": "nwb serve-react-app",
+    "start": "node node_modules/react-native/local-cli/cli.js start",
     "serve": "node ./server/index.js"
   },
   "license": "MIT",
@@ -13,12 +13,17 @@
     "babel-loader": "^6.2.10",
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
-    "nwb": "^0.20.0"
+    "nwb": "^0.20.0",
+    "babel-jest": "22.0.4",
+    "babel-preset-react-native": "4.0.0",
+    "jest": "22.0.4",
+    "react-test-renderer": "16.0.0"
   },
   "dependencies": {
+    "react": "16.0.0",
+    "react-native": "0.51.0",
     "chess.js": "^0.10.2",
     "classnames": "^2.2.5",
-    "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "socket.io": "^1.7.4",
     "express": "^4.13.3"

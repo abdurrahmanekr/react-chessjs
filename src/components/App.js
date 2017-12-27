@@ -11,6 +11,8 @@ import {
     isCastle,
 } from '../utils';
 
+import client from '../utils/client';
+
 import Board from './Board/Board';
 import LeaderBoard from './LeaderBoard/LeaderBoard';
 
@@ -23,11 +25,13 @@ export default class App extends Component {
         this.state = {
             selectedPiece: null,
         };
+        client.connect();
     }
 
     onPieceClick(e, x, y) {
         var piece = join(x, y);
         var square = chess.get(piece);
+        client.emit('startGame');
 
         var moves = chess.moves({ square: piece });
 
