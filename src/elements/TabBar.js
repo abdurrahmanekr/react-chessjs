@@ -15,6 +15,8 @@ export default class TabBar extends Component {
     constructor(props) {
         super(props);
         this.tabIcons = [];
+
+        this.setAnimationValue = this.setAnimationValue.bind(this);
     }
 
     componentDidMount() {
