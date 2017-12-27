@@ -13,11 +13,30 @@ export default class NewGame extends Component {
             <View
                 style={styles.body}>
                 <TouchableOpacity
+                    onPress={() => {
+                        this.props.navigation.navigate('Loading')
+                    }}
                     style={[styles.shape, styles.shape1]}>
+                    <View
+                        style={styles.shapeButton}>
+                        <Text
+                            style={styles.shapeButtonText}>
+                            Computer
+                        </Text>
+                    </View>
                 </TouchableOpacity>
                 <TouchableOpacity
+                    onPress={() => {
+                        this.props.navigation.navigate('Loading')
+                    }}
                     style={[styles.shape, styles.shape2]}>
-
+                    <View
+                        style={styles.shapeButton}>
+                        <Text
+                            style={styles.shapeButtonText}>
+                            Multiplayer
+                        </Text>
+                    </View>
                 </TouchableOpacity>
             </View>
         );
@@ -29,6 +48,9 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     shape: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
         // flex: 1,
         position: 'absolute',
         transform: [{
@@ -49,6 +71,17 @@ const styles = StyleSheet.create({
         bottom: -200,
         backgroundColor: 'red',
     },
+    shapeButton: {
+        // backgroundColor: 'black',
+        height: 100,
+        transform: [{
+            rotate: '-45deg'
+        }]
+    },
+    shapeButtonText: {
+        color: '#fff',
+        fontSize: 19,
+    }
 });
 
 NewGame.navigationOptions = {
