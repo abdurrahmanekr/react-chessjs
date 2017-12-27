@@ -12,20 +12,19 @@ import {
     TabBar,
 } from '../elements'
 
-export default class Home extends Component {
+import Home from './Home.native';
+
+export default class Pages extends Component {
     render() {
         return (
-            <View>
-                <Text>Test</Text>
-            </View>
+            <ScrollableTabView
+                renderTabBar={() => <TabBar/>}>
+                <Home tabLabel="ios-home"/>
+            </ScrollableTabView>
         );
     }
 }
 
-const styles = StyleSheet.create({
-
-});
-
-Home.navigationOptions = {
+Pages.navigationOptions = {
     header: null,
 }

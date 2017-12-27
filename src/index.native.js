@@ -8,11 +8,11 @@ import {
     StackNavigator,
 } from 'react-navigation';
 
-import Home from './screens/Home.native';
+import Pages from './screens/Pages.native';
 
 const Navigator = StackNavigator({
-    Home: {
-        screen: Home,
+    Pages: {
+        screen: Pages,
     },
 });
 
