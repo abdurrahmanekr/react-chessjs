@@ -4,6 +4,7 @@ import {
     StyleSheet,
     View,
     Text,
+    TouchableOpacity,
 } from 'react-native';
 
 import ScrollableTabView from 'react-native-scrollable-tab-view';
@@ -16,14 +17,31 @@ export default class Home extends Component {
     render() {
         return (
             <View>
-                <Text>Test</Text>
+                <TouchableOpacity
+                    style={styles.playButton}>
+                    <Text
+                        style={styles.playButtonText}>
+                        Play
+                    </Text>
+                </TouchableOpacity>
             </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
-
+    playButton: {
+        padding: 10,
+        margin: 10,
+        backgroundColor: 'lightgreen',
+        borderWidth: 1,
+        borderColor: 'green',
+        borderRadius: 5,
+    },
+    playButtonText: {
+        fontSize: 17,
+        color: 'green',
+    }
 });
 
 Home.navigationOptions = {
