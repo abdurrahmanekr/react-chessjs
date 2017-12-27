@@ -9,11 +9,15 @@ import {
 } from 'react-navigation';
 
 import Pages from './screens/Pages.native';
+import NewGame from './screens/NewGame.native';
 
 const Navigator = StackNavigator({
     Pages: {
         screen: Pages,
     },
+    NewGame: {
+        screen: NewGame,
+    }
 });
 
 const App = () => (

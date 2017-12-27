@@ -18,6 +18,9 @@ export default class Home extends Component {
         return (
             <View>
                 <TouchableOpacity
+                    onPress={() => {
+                        this.props.navigation.navigate('NewGame', )
+                    }}
                     style={styles.playButton}>
                     <Text
                         style={styles.playButtonText}>

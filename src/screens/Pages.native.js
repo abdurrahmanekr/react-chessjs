@@ -17,11 +17,16 @@ import Profile from './Profile.native';
 
 export default class Pages extends Component {
     render() {
+        const navigation = this.props.navigation;
         return (
             <ScrollableTabView
                 renderTabBar={() => <TabBar/>}>
-                <Home tabLabel="ios-home"/>
-                <Profile tabLabel="ios-person"/>
+                <Home
+                    navigation={navigation}
+                    tabLabel="ios-home"/>
+                <Profile
+                    navigation={navigation}
+                    tabLabel="ios-person"/>
             </ScrollableTabView>
         );
     }
