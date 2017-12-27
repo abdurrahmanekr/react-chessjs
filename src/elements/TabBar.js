@@ -51,7 +51,7 @@ export default class TabBar extends Component {
                     <Icon
                         name={tab}
                         size={30}
-                        color={this.props.activeTab === i ? 'rgb(50,50,50)' : 'rgb(50,50,50)'}
+                        color={this.props.activeTab === i ? 'rgb(255,255,255)' : 'rgb(50,50,50)'}
                         ref={(icon) => { this.tabIcons[i] = icon; }}
                     />
                 </TouchableOpacity>;

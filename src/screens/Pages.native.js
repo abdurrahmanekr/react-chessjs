@@ -13,6 +13,7 @@ import {
 } from '../elements'
 
 import Home from './Home.native';
+import Profile from './Profile.native';
 
 export default class Pages extends Component {
     render() {
@@ -20,6 +21,7 @@ export default class Pages extends Component {
             <ScrollableTabView
                 renderTabBar={() => <TabBar/>}>
                 <Home tabLabel="ios-home"/>
+                <Profile tabLabel="ios-person"/>
             </ScrollableTabView>
         );
     }
