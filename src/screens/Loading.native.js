@@ -28,6 +28,13 @@ export default class Loading extends Component {
                         </View>
                     </View>
                     <View
+                        style={styles.vs}>
+                        <Text
+                            style={styles.vsText}>
+                            VS
+                        </Text>
+                    </View>
+                    <View
                         style={styles.user}>
                         <View
                             style={styles.userPhoto}>
@@ -89,6 +96,14 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    vs: {
+        width: 100,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    vsText: {
+        fontSize: 21,
     },
     userPhoto: {
         width: 80,
