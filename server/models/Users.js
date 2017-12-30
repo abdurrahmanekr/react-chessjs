@@ -13,4 +13,12 @@ export default class Users {
             this.users.push(user);
         }
     }
+
+    length() {
+        return this.users.length;
+    }
+
+    indexOf(index) {
+        return this.users[index];
+    }
 }

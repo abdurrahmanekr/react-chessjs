@@ -32,3 +32,5 @@ const App = () => (
 );
 
 AppRegistry.registerComponent('Chess', () => App);
+
+global.XMLHttpRequest = global.originalXMLHttpRequest || global.XMLHttpRequest;

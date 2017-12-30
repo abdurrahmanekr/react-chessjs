@@ -12,6 +12,20 @@ class Client {
         });
     }
 
+    on(...params) {
+        if (!this.connected)
+            return;
+
+        this.socket.on(...params);
+    }
+
+    off(...params) {
+        if (!this.connected)
+            return;
+
+        this.socket.off(...params);
+    }
+
     emit(...params) {
         if (!this.connected)
             return;

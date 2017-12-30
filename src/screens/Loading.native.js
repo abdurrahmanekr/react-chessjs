@@ -5,9 +5,25 @@ import {
     View,
     Text,
     TouchableOpacity,
+    Image,
 } from 'react-native';
 
+import Client from '../utils/client';
+
 export default class Loading extends Component {
+    constructor(props) {
+        super(props);
+
+        this.play = this.play.bind(this);
+    }
+
+    play() {
+        Client.emit('getRandomGamer', null, (res) => {
+            console.log(res);
+            debugger
+        });
+    }
+
     render() {
         return (
             <View
@@ -38,12 +54,15 @@ export default class Loading extends Component {
                         style={styles.user}>
                         <View
                             style={styles.userPhoto}>
+                            <Image
+                                style={styles.userPhoto}
+                                source={require('../assets/user.png')}/>
                         </View>
                         <View
                             style={styles.userName}>
                             <Text
                                 style={styles.userNameText}>
-                                Izabella
+                                ?
                             </Text>
                         </View>
                     </View>
@@ -68,6 +87,7 @@ export default class Loading extends Component {
                         <View
                             style={[styles.button, styles.playButton]}>
                             <TouchableOpacity
+                                onPress={this.play}
                                 style={[styles.playButtonBody, styles.buttonBody, { backgroundColor: '#44dd66' }]}>
                                 <Text
                                     style={styles.buttonText}>
@@ -109,7 +129,9 @@ const styles = StyleSheet.create({
         width: 80,
         height: 80,
         borderRadius: 25,
-        backgroundColor: 'red',
+        backgroundColor: '#ffaa55',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     userName: {
         paddingTop: 10,
@@ -152,12 +174,9 @@ const styles = StyleSheet.create({
         width: '90%',
         alignItems: 'center',
     },
-    playButtonText: {
-
-    },
 });
 
 Loading.navigationOptions = {
-    title: 'Loading',
+    title: 'Game Setting',
     // header: null,
 }

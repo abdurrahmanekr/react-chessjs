@@ -13,6 +13,8 @@ import {
     TabBar,
 } from '../elements'
 
+import Client from '../utils/client';
+
 export default class Home extends Component {
     render() {
         return (
