@@ -10,17 +10,47 @@ import {
 
 import Client from '../utils/client';
 
+import { Chess } from 'chess.js';
+
 export default class Loading extends Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            rival: null,
+            rivalId: null,
+            loading: false,
+            lock: false,
+        };
         this.play = this.play.bind(this);
+        this.openGame = this.openGame.bind(this);
     }
 
     play() {
-        Client.emit('getRandomGamer', null, (res) => {
-            console.log(res);
-            debugger
+        var self = this;
+        self.setState({
+            loading: true,
+        });
+        Client.emit('getRandomGamer', {}, (res) => {
+            self.state.rival = res.name;
+            self.state.rivalId = res.id;
+            self.state.lock = true;
+            self.setState(self.state);
+            setTimeout(() => {
+                self.setState({
+                    loading: false,
+                });
+                self.openGame(self.state.rivalId);
+            }, 500);
+        });
+    }
+
+    openGame(id) {
+        const navigation = this.props.navigation;
+        navigation.navigate('Game', {
+            id: id,
+            chess: new Chess(),
+            side: 'w',
         });
     }
 
@@ -62,7 +92,7 @@ export default class Loading extends Component {
                             style={styles.userName}>
                             <Text
                                 style={styles.userNameText}>
-                                ?
+                                {this.state.rival || '?'}
                             </Text>
                         </View>
                     </View>
@@ -91,7 +121,7 @@ export default class Loading extends Component {
                                 style={[styles.playButtonBody, styles.buttonBody, { backgroundColor: '#44dd66' }]}>
                                 <Text
                                     style={styles.buttonText}>
-                                    Play
+                                    Play {this.state.loading && '...'}
                                 </Text>
                             </TouchableOpacity>
                         </View>

@@ -11,6 +11,7 @@ import {
 import Pages from './screens/Pages.native';
 import NewGame from './screens/NewGame.native';
 import Loading from './screens/Loading.native';
+import Game from './screens/Game.native';
 
 const Navigator = StackNavigator({
     Pages: {
@@ -22,6 +23,9 @@ const Navigator = StackNavigator({
     Loading: {
         screen: Loading,
     },
+    Game: {
+        screen: Game,
+    }
 });
 
 const App = () => (
