@@ -145,3 +145,25 @@ export function getPiece(chess, type, color) {
             };
     }
 }
+
+export function getCapture(chess) {
+    var history = chess.history({verbose: true});
+    var initial = {
+        w: { p: 0, n: 0, b: 0, r: 0, q: 0 },
+        b: { p: 0, n: 0, b: 0, r: 0, q: 0 },
+    };
+
+    var captured = history.reduce(function(acc, move) {
+        if ('captured' in move) {
+            var piece = move.captured;
+            // switch colors since the history stores the color of the player doing the
+            // capturing, not the color of the captured piece
+            var color = move.color == 'w' ? 'b' : 'w';
+            acc[color][piece] += 1;
+            return acc;
+        } else {
+            return acc;
+        }
+    }, initial);
+    return captured;
+}

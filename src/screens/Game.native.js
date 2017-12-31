@@ -20,6 +20,7 @@ import {
 } from '../utils';
 
 import Board from '../components/Board/Board.native'
+import UserBoard from '../components/UserBoard/UserBoard.native'
 
 export default class Game extends Component {
     constructor(props) {
@@ -60,16 +61,28 @@ export default class Game extends Component {
         const {
             chess,
             side,
+            rival,
+            me,
         } = this.params;
 
         return (
             <ScrollView
                 style={styles.body}>
+                <UserBoard
+                    chess={chess}
+                    name={rival}
+                    side={chess.BLACK === side ? chess.WHITE : chess.BLACK}
+                    photo={require('../assets/user.png')}/>
                 <Board
                     onPiecePress={this.onPiecePress}
                     selectedPiece={this.state.selectedPiece}
                     side={side}
                     chess={chess}/>
+                <UserBoard
+                    chess={chess}
+                    name={me}
+                    side={side}
+                    photo={require('../assets/user.png')}/>
             </ScrollView>
         );
     }

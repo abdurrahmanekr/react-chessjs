@@ -3,6 +3,7 @@ import io from "socket.io-client";
 class Client {
 
     connected = false;
+    name = '';
 
     connect() {
         if (this.connected === true)
@@ -11,6 +12,7 @@ class Client {
 
         this.socket.on('connect', () => {
             this.connected = true;
+            this.name = 'MyUser'
         });
         this.socket.on('disconnect', (err) => {
             this.connected = false;

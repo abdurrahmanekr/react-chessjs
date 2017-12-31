@@ -40,17 +40,19 @@ export default class Loading extends Component {
                 self.setState({
                     loading: false,
                 });
-                self.openGame(self.state.rivalId);
+                self.openGame(self.state.rivalId, self.state.rival);
             }, 500);
         });
     }
 
-    openGame(id) {
+    openGame(id, name) {
         const navigation = this.props.navigation;
         navigation.navigate('Game', {
             id: id,
             chess: new Chess(),
             side: 'w',
+            rival: name,
+            me: Client.name,
         });
     }
 

@@ -98,7 +98,7 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.chess"
+        applicationId "com.avarekodcu.chess"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 1
