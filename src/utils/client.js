@@ -5,12 +5,15 @@ class Client {
     connected = false;
 
     connect() {
-        this.socket = io.connect('http://localhost:8082', {
-            query: 'name=abdurrahman',
-        });
+        if (this.connected === true)
+            return;
+        this.socket = io.connect('http://127.0.0.1:8082');
 
         this.socket.on('connect', () => {
             this.connected = true;
+        });
+        this.socket.on('disconnect', (err) => {
+            this.connected = false;
         });
     }
 

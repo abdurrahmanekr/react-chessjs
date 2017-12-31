@@ -11,10 +11,15 @@ var server = app.listen(process.env.PORT || 8082, function () {
     console.log('Server running at port %s', port);
 });
 
-var io = require('socket.io')(server);
+var io = require('socket.io')(server, { pingTimeout: 30000 });
 
 io.on('connection', function(client) {
-    console.log(client);
+    console.log('client connected');
+
+    client.on('disconnect', function(){
+        console.log('client disconnected', arguments);
+    });
+
     users.add(new User(
         '1',
         'Jhorge',
