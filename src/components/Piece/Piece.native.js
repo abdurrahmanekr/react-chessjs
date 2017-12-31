@@ -20,30 +20,30 @@ export default class Piece extends Component {
             plus,
             promotion,
             castle,
-            onPieceClick,
+            onPiecePress,
             piece,
             selected,
             numberShow,
         } = this.props;
 
         return (
-            <View
+            <TouchableOpacity
                 style={[
                     styles.square,
-                    selected && styles.selected,
                     color === 'light' && styles.white,
+                    selected && styles.selected,
                     movable && styles.movable,
                     plus && styles.movablePlus,
                     promotion && styles.movablePromotion,
                     castle && styles.movableCastle,
                 ]}
-                onClick={e => onPieceClick(e, x, y)}>
+                onPress={e => onPiecePress(e, x, y)}>
                 <Text>{ piece }</Text>
                 {
                     true && numberShow &&
                     <Text style={styles.numberBottom}>{x}</Text>
                 }
-            </View>
+            </TouchableOpacity>
         );
     }
 }

@@ -14,6 +14,7 @@ var server = app.listen(process.env.PORT || 8082, function () {
 var io = require('socket.io')(server);
 
 io.on('connection', function(client) {
+    console.log(client);
     users.add(new User(
         '1',
         'Jhorge',

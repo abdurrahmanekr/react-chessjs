@@ -5,7 +5,9 @@ class Client {
     connected = false;
 
     connect() {
-        this.socket = io.connect('http://localhost:8082');
+        this.socket = io.connect('http://localhost:8082', {
+            query: 'name=abdurrahman',
+        });
 
         this.socket.on('connect', () => {
             this.connected = true;

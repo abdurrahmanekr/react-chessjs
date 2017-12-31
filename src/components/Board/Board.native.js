@@ -42,7 +42,7 @@ export default class Board extends Component {
             chess,
             side,
             selectedPiece,
-            onPieceClick,
+            onPiecePress,
         } = this.props;
 
         return (
@@ -72,7 +72,7 @@ export default class Board extends Component {
                                         plus={isPlus(x, y, chess, selectedPiece)}
                                         promotion={isPromotion(x, y, chess, selectedPiece)}
                                         castle={isCastle(x, y, chess, selectedPiece)}
-                                        onPieceClick={onPieceClick}
+                                        onPiecePress={onPiecePress}
                                         piece={this.getPiece(x, y).piece}/>
                                 ))
                             }
